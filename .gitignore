@@ -1,0 +1,9 @@
+.idea/
+venv
+.pytest_cache
+__pycache__/
+*.py[cod]
+*$py.class
+geckodriver.log
+__init__.py
+.idea/pythonSeleniumTesting.iml
