@@ -27,8 +27,8 @@ class ProductPageLocators:
     ADDED_NAME_IN_ALERT = (By.CSS_SELECTOR, "#messages>.alert-success>.alertinner>strong")
 
 
-#@dataclasses
 class PromoLinks:
     LINK: str = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer"
     ENDPOINTS: list = ["0", "1", "2", "3", "4", "5", "6", "6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"]
+    # ENDPOINTS: list = ["0"]
 
