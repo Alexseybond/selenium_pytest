@@ -24,6 +24,12 @@ class ProductPage(BasePage):
         formatted_current_product_name = current_product_name.lower().replace(" ", "-").replace("'", "")
         assert (formatted_current_product_name in current_url), "wrong url link"
 
+    def test_guest_add_product_to_basket(self):
+        login_link = WebDriverWait(self.browser, timeout=5) \
+            .until(EC.presence_of_element_located(ProductPageLocators.BUTTON_ADD_TO_BASKET))
+        login_link.click()
+        assert self.is_element_present(*ProductPageLocators.ALERT_SUCCESS), "Product is not added to basket"
+
     def test_guest_can_add_product_to_basket(self):
         # login_link = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         login_link = WebDriverWait(self.browser, timeout=5)\

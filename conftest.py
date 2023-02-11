@@ -19,7 +19,7 @@ def browser(request):
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
         options = Options()
-        options.add_argument('headless')
+        # options.add_argument('headless')
         browser = webdriver.Chrome(options=options)
     elif browser_name == "firefox":
         print("\nstart firefox browser for test..")
