@@ -1,12 +1,9 @@
-import time
 from faker import Faker
 import pytest
-
-from pages.base_page import BasePage
 from pages.basket_page import BasketPage
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
-from pages.locators import ProductPageLocators, MainPageLocators, LoginPageLocators
+from pages.locators import ProductPageLocators, LoginPageLocators
 from pages.locators import PromoLinks
 
 

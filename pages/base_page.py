@@ -5,7 +5,6 @@ from selenium.common.exceptions import NoAlertPresentException, TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
 from pages.locators import BasePageLocators, MainPageLocators
 
 
@@ -21,7 +20,6 @@ class BasePage:
 
     def is_element_present(self, how: By, what: str, timeout: int = 10) -> bool:
         try:
-            # self.browser.find_element(how, what)
             WebDriverWait(self.browser, timeout=timeout).until(EC.presence_of_element_located((how, what)))
         except NoSuchElementException:
             return False
@@ -44,15 +42,11 @@ class BasePage:
         return False
 
     def go_to_login_page(self):
-        # login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
         login_link = WebDriverWait(self.browser, timeout=10)\
             .until(EC.presence_of_element_located(BasePageLocators.LOGIN_LINK_INVALID))
         login_link.click()
-        #alert = self.browser.switch_to.alert
-        #alert.accept()
 
     def go_to_basket_page(self):
-        # login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
         basket_link = WebDriverWait(self.browser, timeout=10)\
             .until(EC.presence_of_element_located(MainPageLocators.BASKET_LINK))
         basket_link.click()
@@ -76,3 +70,7 @@ class BasePage:
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
