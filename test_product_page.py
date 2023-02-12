@@ -1,10 +1,12 @@
 import time
-
+from faker import Faker
 import pytest
 
+from pages.base_page import BasePage
 from pages.basket_page import BasketPage
+from pages.login_page import LoginPage
 from pages.product_page import ProductPage
-from pages.locators import ProductPageLocators
+from pages.locators import ProductPageLocators, MainPageLocators, LoginPageLocators
 from pages.locators import PromoLinks
 
 
@@ -21,14 +23,6 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page = ProductPage(browser, link)
     page.open()
     page.should_be_guest_add_product_to_basket()
-    page.is_not_element_present(*ProductPageLocators.ALERT_WITH_ADDED_BOOK)
-
-
-@pytest.mark.xfail(reason="Negative checks")
-def test_guest_cant_see_success_message(browser):
-    link = PromoLinks.LINK_WITHOUT_PROMO
-    page = ProductPage(browser, link)
-    page.open()
     page.is_not_element_present(*ProductPageLocators.ALERT_WITH_ADDED_BOOK)
 
 
@@ -50,3 +44,30 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_be_basket_page()
     basket_page.should_be_basket_is_empty()
+
+
+class TestUserAddToBasketFromProductPage:
+
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = LoginPageLocators.URL
+        page = LoginPage(browser, link)
+        fake = Faker()
+        page.register_new_user(fake.email(), fake.password())
+        page.should_be_authorized_user()
+        yield
+        page.delete_registered_user()
+
+    @pytest.mark.xfail(reason="Negative checks")
+    def test_user_cant_see_success_message(self, browser):
+        link = PromoLinks.LINK_WITHOUT_PROMO
+        page = ProductPage(browser, link)
+        page.open()
+        page.is_not_element_present(*ProductPageLocators.ALERT_WITH_ADDED_BOOK)
+
+    def test_user_can_add_product_to_basket(self, browser):
+        link = PromoLinks.LINK_WITHOUT_PROMO
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_be_guest_add_product_to_basket()
+
