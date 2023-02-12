@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+from pages.locators import BasePageLocators, MainPageLocators
+
 
 class BasePage:
 
@@ -40,6 +42,26 @@ class BasePage:
         except TimeoutException:
             return True
         return False
+
+    def go_to_login_page(self):
+        # login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
+        login_link = WebDriverWait(self.browser, timeout=10)\
+            .until(EC.presence_of_element_located(BasePageLocators.LOGIN_LINK_INVALID))
+        login_link.click()
+        #alert = self.browser.switch_to.alert
+        #alert.accept()
+
+    def go_to_basket_page(self):
+        # login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
+        basket_link = WebDriverWait(self.browser, timeout=10)\
+            .until(EC.presence_of_element_located(MainPageLocators.BASKET_LINK))
+        basket_link.click()
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+    def should_be_basket_link(self):
+        assert self.is_element_present(*MainPageLocators.BASKET_LINK), "Basket link is not presented"
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert

@@ -2,6 +2,7 @@ import time
 
 import pytest
 
+from pages.basket_page import BasketPage
 from pages.product_page import ProductPage
 from pages.locators import ProductPageLocators
 from pages.locators import PromoLinks
@@ -19,7 +20,7 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     link = PromoLinks.LINK_WITHOUT_PROMO
     page = ProductPage(browser, link)
     page.open()
-    page.test_guest_add_product_to_basket()
+    page.should_be_guest_add_product_to_basket()
     page.is_not_element_present(*ProductPageLocators.ALERT_WITH_ADDED_BOOK)
 
 
@@ -36,6 +37,16 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     link = PromoLinks.LINK_WITHOUT_PROMO
     page = ProductPage(browser, link)
     page.open()
-    page.test_guest_add_product_to_basket()
+    page.should_be_guest_add_product_to_basket()
     page.is_disappeared(*ProductPageLocators.ALERT_WITH_ADDED_BOOK)
 
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = PromoLinks.LINK_WITHOUT_PROMO
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_be_add_product_link()
+    page.go_to_basket_page()
+    basket_page = BasketPage(browser, browser.current_url)
+    basket_page.should_be_basket_page()
+    basket_page.should_be_basket_is_empty()
