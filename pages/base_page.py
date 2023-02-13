@@ -43,7 +43,7 @@ class BasePage:
 
     def go_to_login_page(self):
         login_link = WebDriverWait(self.browser, timeout=10)\
-            .until(EC.presence_of_element_located(BasePageLocators.LOGIN_LINK_INVALID))
+            .until(EC.presence_of_element_located(BasePageLocators.LOGIN_LINK))
         login_link.click()
 
     def go_to_basket_page(self):
