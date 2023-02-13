@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List
 
 import pytest
 from selenium.webdriver.common.by import By
@@ -37,10 +38,11 @@ class ProductPageLocators:
     ADD_TO_BASKET_BUTTON: tuple = (By.CSS_SELECTOR, '.btn-add-to-basket')
 
 
+@dataclass(init=False, frozen=True)
 class PromoLinks:
     LINK: str = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer"
     LINK_WITHOUT_PROMO: str = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/coders-at-work_207/"
-    ENDPOINTS: list = ["0", "1", "2", "3", "4", "5", "6", "6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"]
+    ENDPOINTS: list = List["0", "1", "2", "3", "4", "5", "6", "6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"]
 
 
 @dataclass(init=False, frozen=True)
