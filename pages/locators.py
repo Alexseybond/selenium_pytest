@@ -6,35 +6,35 @@ from selenium.webdriver.common.by import By
 
 @dataclass(init=False, frozen=True)
 class MainPageLocators:
-    URL = "http://selenium1py.pythonanywhere.com/"
-    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-    BASKET_LINK = (By.CSS_SELECTOR, ".btn-group>a.btn")
+    URL: str = "http://selenium1py.pythonanywhere.com/"
+    LOGIN_LINK: tuple = (By.CSS_SELECTOR, "#login_link")
+    BASKET_LINK: tuple = (By.CSS_SELECTOR, ".btn-group>a.btn")
 
 
 @dataclass(init=False, frozen=True)
 class LoginPageLocators:
-    URL = "http://selenium1py.pythonanywhere.com/en-gb/accounts/login/"
-    PAGE_TITLE = "Login or register | Oscar - Sandbox"
-    LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
-    REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
-    EMAIL_FIELD = (By.CSS_SELECTOR, "#id_registration-email")
-    PASSWORD_FIELD = (By.CSS_SELECTOR, "#id_registration-password1")
-    CONFIRM_PASSWORD_FIELD = (By.CSS_SELECTOR, "#id_registration-password2")
-    REGISTER_BUTTON = (By.CSS_SELECTOR, "#register_form>button.btn.btn-lg.btn-primary")
+    URL: str = "http://selenium1py.pythonanywhere.com/en-gb/accounts/login/"
+    PAGE_TITLE: str = "Login or register | Oscar - Sandbox"
+    LOGIN_FORM: tuple = (By.CSS_SELECTOR, "#login_form")
+    REGISTER_FORM: tuple = (By.CSS_SELECTOR, "#register_form")
+    EMAIL_FIELD: tuple = (By.CSS_SELECTOR, "#id_registration-email")
+    PASSWORD_FIELD: tuple = (By.CSS_SELECTOR, "#id_registration-password1")
+    CONFIRM_PASSWORD_FIELD: tuple = (By.CSS_SELECTOR, "#id_registration-password2")
+    REGISTER_BUTTON: tuple = (By.CSS_SELECTOR, "#register_form>button.btn.btn-lg.btn-primary")
 
 
 @dataclass(init=False, frozen=True)
 class ProductPageLocators:
-    URL = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
-    PAGE_TITLE = "The shellcoder's handbook | Oscar - Sandbox"
-    BUTTON_ADD_TO_BASKET = (By.CSS_SELECTOR, ".btn-add-to-basket")
-    ALERT_WITH_ADDED_BOOK = (By.XPATH, "//strong[contains(text(),'Coders at Work')]")
-    ALERT_SUCCESS = (By.CSS_SELECTOR, ".alert-success")
-    PRODUCT_PRICE = (By.CSS_SELECTOR, ".product_main>.price_color")
-    NAME_PRODUCT = (By.XPATH, '//*[@class="col-sm-6 product_main"]/h1')
-    ADDED_PRICE_IN_ALERT = (By.CSS_SELECTOR, ".alert.alert-safe.alert-noicon.alert-info.fade.in>.alertinner>p>strong")
-    ADDED_NAME_IN_ALERT = (By.XPATH, "//strong[contains(text(),'Coders at Work')]")
-    ADD_TO_BASKET_BUTTON = (By.CSS_SELECTOR, '.btn-add-to-basket')
+    URL: str = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+    PAGE_TITLE: str = "The shellcoder's handbook | Oscar - Sandbox"
+    BUTTON_ADD_TO_BASKET: tuple = (By.CSS_SELECTOR, ".btn-add-to-basket")
+    ALERT_WITH_ADDED_BOOK: tuple = (By.XPATH, "//strong[contains(text(),'Coders at Work')]")
+    ALERT_SUCCESS: tuple = (By.CSS_SELECTOR, ".alert-success")
+    PRODUCT_PRICE: tuple = (By.CSS_SELECTOR, ".product_main>.price_color")
+    NAME_PRODUCT: tuple = (By.XPATH, '//*[@class="col-sm-6 product_main"]/h1')
+    ADDED_PRICE_IN_ALERT: tuple = (By.CSS_SELECTOR, ".alert.alert-safe.alert-noicon.alert-info.fade.in>.alertinner>p>strong")
+    ADDED_NAME_IN_ALERT: tuple = (By.XPATH, "//strong[contains(text(),'Coders at Work')]")
+    ADD_TO_BASKET_BUTTON: tuple = (By.CSS_SELECTOR, '.btn-add-to-basket')
 
 
 class PromoLinks:
@@ -45,12 +45,12 @@ class PromoLinks:
 
 @dataclass(init=False, frozen=True)
 class BasePageLocators:
-    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
-    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
+    LOGIN_LINK: tuple = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID: tuple = (By.CSS_SELECTOR, "#login_link_inc")
+    USER_ICON: tuple = (By.CSS_SELECTOR, ".icon-user")
 
 
 @dataclass(init=False, frozen=True)
 class BasketPageLocators:
-    PAGE_TITLE = "Basket | Oscar - Sandbox"
-    TEXT_BASKET_IS_EMPTY = (By.CSS_SELECTOR, "#content_inner>p")
+    PAGE_TITLE: str = "Basket | Oscar - Sandbox"
+    TEXT_BASKET_IS_EMPTY: tuple = (By.CSS_SELECTOR, "#content_inner>p")
