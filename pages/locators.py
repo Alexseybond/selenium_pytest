@@ -1,15 +1,17 @@
-import dataclasses
+from dataclasses import dataclass
 
 import pytest
 from selenium.webdriver.common.by import By
 
 
+@dataclass(init=False, frozen=True)
 class MainPageLocators:
     URL = "http://selenium1py.pythonanywhere.com/"
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     BASKET_LINK = (By.CSS_SELECTOR, ".btn-group>a.btn")
 
 
+@dataclass(init=False, frozen=True)
 class LoginPageLocators:
     URL = "http://selenium1py.pythonanywhere.com/en-gb/accounts/login/"
     PAGE_TITLE = "Login or register | Oscar - Sandbox"
@@ -21,6 +23,7 @@ class LoginPageLocators:
     REGISTER_BUTTON = (By.CSS_SELECTOR, "#register_form>button.btn.btn-lg.btn-primary")
 
 
+@dataclass(init=False, frozen=True)
 class ProductPageLocators:
     URL = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
     PAGE_TITLE = "The shellcoder's handbook | Oscar - Sandbox"
@@ -40,12 +43,14 @@ class PromoLinks:
     ENDPOINTS: list = ["0", "1", "2", "3", "4", "5", "6", "6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"]
 
 
+@dataclass(init=False, frozen=True)
 class BasePageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 
+@dataclass(init=False, frozen=True)
 class BasketPageLocators:
     PAGE_TITLE = "Basket | Oscar - Sandbox"
     TEXT_BASKET_IS_EMPTY = (By.CSS_SELECTOR, "#content_inner>p")
