@@ -26,7 +26,11 @@ def browser(request):
         options = Options()
         options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
         options.add_argument('headless')
-        browser = webdriver.Chrome(options=options)
+        current_dir = os.path.abspath(os.path.dirname(__file__))
+        browser = webdriver.Chrome(
+            options=options,
+            executable_path=os.path.join(current_dir, 'chromedriver')
+        )
     elif browser_name == "firefox":
         print("\nstart firefox browser for test..")
         browser = webdriver.Firefox()
