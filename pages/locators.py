@@ -14,6 +14,7 @@ class MainPageLocators:
 
 @dataclass(init=False, frozen=True)
 class LoginPageLocators:
+    URL_TO_REGISTRATION = ""
     URL: str = "http://selenium1py.pythonanywhere.com/en-gb/accounts/login/"
     PAGE_TITLE: str = "Login or register | Oscar - Sandbox"
     LOGIN_FORM: tuple = (By.CSS_SELECTOR, "#login_form")

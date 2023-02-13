@@ -49,6 +49,7 @@ class TestUserAddToBasketFromProductPage:
     def setup(self, browser):
         link = LoginPageLocators.URL
         page = LoginPage(browser, link)
+        page.open()
         fake = Faker()
         page.register_new_user(fake.email(), fake.password())
         page.should_be_authorized_user()
