@@ -7,6 +7,7 @@ from pages.locators import ProductPageLocators, LoginPageLocators
 from pages.locators import PromoLinks
 
 
+@pytest.mark.need_review
 @pytest.mark.parametrize("endpoint", PromoLinks.ENDPOINTS)
 def test_login_url(browser, endpoint):
     link = f"{PromoLinks.LINK}{endpoint}"
@@ -15,6 +16,7 @@ def test_login_url(browser, endpoint):
     page.should_be_product_page()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     link = PromoLinks.LINK_WITHOUT_PROMO
     page = ProductPage(browser, link)
@@ -32,6 +34,7 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.is_disappeared(*ProductPageLocators.ALERT_WITH_ADDED_BOOK)
 
 
+    @pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = PromoLinks.LINK_WITHOUT_PROMO
     page = ProductPage(browser, link)
@@ -43,6 +46,7 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page.should_be_basket_is_empty()
 
 
+@pytest.mark.login_as_register_user
 class TestUserAddToBasketFromProductPage:
 
     @pytest.fixture(scope="function", autouse=True)
